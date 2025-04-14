@@ -2,6 +2,8 @@ import express, { Application,Request,Response } from "express";
 import http, { Server as HTTPServer } from "http";
 import cors from "cors";
 import morgan from "morgan";
+import { errorHandler } from "../middleware/errorHandler";
+import router from "../routes/authRoutes";
 
 class Server {
   public app: Application;
@@ -48,15 +50,17 @@ class Server {
     }
   };
 
-  private setupRoutes() {
-
-    this.app.get("/",(req:Request,res:Response)=>{
-
-      res.status(200).json({message:"auth API is working fine"})
-
-    })
-    
+  private async setupRoutes(): Promise<void> {
+    this.app.use((req, res, next) => {
+      console.log(`👉 Request: ${req.method} ${req.originalUrl}`);
+      next();
+    });
+  
+    this.app.use("/api/auth", router);
+    this.app.use(errorHandler);
   }
+
+ 
 }
 
 export default Server;

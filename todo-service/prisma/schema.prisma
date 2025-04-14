@@ -1,7 +1,8 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
+  output   = "../node_modules/.prisma/client" 
 }
+
 
 datasource db {
   provider = "postgresql"
@@ -12,7 +13,6 @@ model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  name      String
   todos     Todo[]
   createdAt DateTime @default(now())
 }
@@ -20,8 +20,8 @@ model User {
 model Todo {
   id        String   @id @default(uuid())
   title     String
-  status    String
-  priority  String
+  status    String   
+  priority  String   
   dueDate   DateTime?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
