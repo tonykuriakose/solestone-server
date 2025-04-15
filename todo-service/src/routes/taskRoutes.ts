@@ -11,8 +11,9 @@ import { authenticate } from "../middleware/authenticate"
 const router = express.Router();
 
 
-router.get("/tasks", authenticate, getTasks);
-router.post("/tasks", authenticate, validateCreateTask, createTask);
+router.get("/tasks",async (req,res)=>{
+  res.json(tasks)},authenticate, getTasks);
+router.post("/tasks",authenticate, validateCreateTask, createTask);
 router.put("/tasks/:id", authenticate, updateTask);
 router.delete("/tasks/:id", authenticate, deleteTask);
 

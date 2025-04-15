@@ -50,6 +50,9 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
       },
     });
 
+    console.log(task);
+    
+
     res.status(201).json(task);
   } catch (error) {
     console.error("Create task error:", error);
@@ -74,6 +77,8 @@ export const getTasks = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
 
 
 export const updateTask = async (req: Request, res: Response): Promise<void> => {
