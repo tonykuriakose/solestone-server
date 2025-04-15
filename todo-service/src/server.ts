@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import Server from "./server";
+import Server from "./server/index";
 config();
 
 
